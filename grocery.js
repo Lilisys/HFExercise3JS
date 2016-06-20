@@ -13,14 +13,14 @@ function updateList(){
 	//Update the total
 	var total = 0;
 	for (var i = 0; i < groceryItems.length; i++) {
-	 	
-	 	p.innerHTML += "Name: " + groceryItems[i].name + ", Price: " + groceryItems[i].price + '<br>'; 
+
+	 	p.innerHTML += "Name: " + groceryItems[i].name + ", Price: $" + groceryItems[i].price + '<br>'; 
 	 	console.log("Name:", groceryItems[i].name, "Price: ", groceryItems[i].price);
 	 	total += parseFloat(groceryItems[i].price);
 	 }
 
 	//Update the page
-	p.innerHTML += "Total: " + total;
+	p.innerHTML += "<b>Total: $" + total + "</b>";
 	console.log("Total: ", total);
 }
 
@@ -29,6 +29,12 @@ function addItem(){
 	var priceIn = document.getElementById("itemPrice");
 	var newName = nameIn.value;
 	var newPrice = priceIn.value;
+
+	if(isNaN(newPrice)){
+		alert("HEY! ENTER A NUMBER FOR ITEM PRICE >:(");
+		return;
+	}
+
 	groceryItems.push({name: newName, price: newPrice});
 	updateList();
 
